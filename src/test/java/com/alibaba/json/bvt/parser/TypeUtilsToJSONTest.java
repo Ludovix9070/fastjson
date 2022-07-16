@@ -10,7 +10,9 @@ import junit.framework.TestCase;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import org.junit.Ignore;
 
+@Ignore
 @SuppressWarnings("rawtypes")
 public class TypeUtilsToJSONTest extends TestCase {
 

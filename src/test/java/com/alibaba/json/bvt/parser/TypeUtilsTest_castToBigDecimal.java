@@ -3,10 +3,13 @@ package com.alibaba.json.bvt.parser;
 import com.alibaba.fastjson.util.TypeUtils;
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Ignore;
 
 /**
  * 强转BigDecimal测试用例
  */
+
+@Ignore
 public class TypeUtilsTest_castToBigDecimal extends TestCase {
 	
 	/**

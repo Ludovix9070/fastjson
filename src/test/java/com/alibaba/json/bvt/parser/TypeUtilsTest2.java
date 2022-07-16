@@ -9,7 +9,9 @@ import junit.framework.TestCase;
 import com.alibaba.fastjson.JSONException;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.util.TypeUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class TypeUtilsTest2 extends TestCase {
 
     public void test_0() throws Exception {

@@ -18,7 +18,9 @@ import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.util.TypeUtils;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class TypeUtilsTest_castToJavaBean extends TestCase {
     protected void setUp() throws Exception {
         ParserConfig.global.addAccept("com.alibaba.json.bvt.parser.TypeUtilsTest_castToJavaBean.");

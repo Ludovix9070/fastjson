@@ -10,7 +10,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.util.TypeUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class TypeUtilsTest3 extends TestCase {
 
     public void test_enum() throws Exception {

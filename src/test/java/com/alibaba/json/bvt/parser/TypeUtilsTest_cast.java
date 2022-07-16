@@ -11,7 +11,9 @@ import org.junit.Assert;
 
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.util.TypeUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class TypeUtilsTest_cast extends TestCase {
 
     public void test_cast_0() throws Exception {

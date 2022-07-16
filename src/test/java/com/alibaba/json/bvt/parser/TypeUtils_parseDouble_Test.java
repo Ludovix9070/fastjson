@@ -2,9 +2,11 @@ package com.alibaba.json.bvt.parser;
 
 import com.alibaba.fastjson.util.TypeUtils;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 import java.util.Random;
 
+@Ignore
 public class TypeUtils_parseDouble_Test extends TestCase {
     public void test_0() throws Exception {
         Random r = new Random();

@@ -6,7 +6,9 @@ import org.junit.Assert;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.util.TypeUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class TypeUtilsTest_compatibleWithJavaBean extends TestCase {
 
     private boolean origin_compatibleWithJavaBean;
