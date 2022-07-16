@@ -47,12 +47,12 @@ public class MapTestParameterized extends TestCase {
                 case t_no_sort:   /*faccio il check su entrambe le stringhe*/
                     if (checkString(value2.toString())) {
                         this.obj = new JSONObject(true);
-                        obj.put(value1, value2);
+                        this.obj.put(value1, value2);
                     }
-                    if (checkString(ids)) {
+                    /*if (checkString(ids)) {
                         if (this.obj == null) this.obj = new JSONObject(true);
                         obj.put(ids, id);
-                    }
+                    }*/
 
                 case t_null:  /*mi interessa check solo su stringa 1*/
 
@@ -74,7 +74,8 @@ public class MapTestParameterized extends TestCase {
     @Parameterized.Parameters
     public static Collection parameters(){
         return Arrays.asList(new Object[][] {
-                {Type.t_no_sort, "{'name':'jobs','id':33}", "id", 33, "name", "jobs"},
+                //{Type.t_no_sort, "{'name':'jobs','id':33}", "id", 33, "name", "jobs"},
+                {Type.t_no_sort, "{'name':'jobs'}", "id", 33, "name", "jobs"},
                 {Type.t_null, "{\"name\":null}", null, null, "name", null},
                 {Type.t_Json, "{\"map\":{\"Ariston\":null}}", null, null, "Ariston", null},
         });
@@ -91,6 +92,7 @@ public class MapTestParameterized extends TestCase {
     public void test_no_sort(){
         Assume.assumeTrue(type == Type.t_no_sort);
         String text = toJSONString(obj);
+        System.out.println("text"+text +"expected"+ expected);
         Assert.assertEquals(expected, text);
     }
 
