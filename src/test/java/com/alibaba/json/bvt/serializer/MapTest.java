@@ -10,10 +10,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import org.junit.Ignore;
 
 import java.util.HashMap;
 import java.util.Map;
 
+@Ignore
 public class MapTest extends TestCase {
 
     public void test_no_sort() throws Exception {

@@ -11,7 +11,9 @@ import com.alibaba.fastjson.serializer.JSONSerializable;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class CustomSerializerTest_enum extends TestCase {
 
     public void test_0() throws Exception {

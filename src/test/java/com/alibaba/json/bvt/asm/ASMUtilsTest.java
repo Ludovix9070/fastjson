@@ -9,7 +9,9 @@ import org.junit.Assert;
 
 import com.alibaba.fastjson.parser.ParseContext;
 import com.alibaba.fastjson.util.ASMUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class ASMUtilsTest extends TestCase {
 
     public void test_isAnroid() throws Exception {

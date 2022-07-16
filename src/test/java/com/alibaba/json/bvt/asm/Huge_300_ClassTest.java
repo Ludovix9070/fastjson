@@ -3,7 +3,9 @@ package com.alibaba.json.bvt.asm;
 import com.alibaba.fastjson.JSON;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class Huge_300_ClassTest extends TestCase {
 
     public void test_huge() {

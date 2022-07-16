@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONReader;
 import com.alibaba.fastjson.parser.Feature;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 import java.io.StringReader;
 
 /**
  * Created by wenshao on 11/08/2017.
  */
+@Ignore
 public class LongTest2_obj extends TestCase {
     public void test_0() throws Exception {
         String json = "{\"v1\":-1883391953414482124,\"v2\":-3019416596934963650,\"v3\":6497525620823745793,\"v4\":2136224289077142499,\"v5\":-2090575024006307745}";

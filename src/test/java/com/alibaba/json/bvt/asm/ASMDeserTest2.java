@@ -6,7 +6,9 @@ import org.junit.Assert;
 import junit.framework.TestCase;
 
 import com.alibaba.fastjson.JSON;
+import org.junit.Ignore;
 
+@Ignore
 public class ASMDeserTest2 extends TestCase {
 
     public void test_codec_1() throws Exception {

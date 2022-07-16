@@ -7,7 +7,9 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.json.test.benchmark.decode.EishayDecodeBytes;
 
 import data.media.MediaContent;
+import org.junit.Ignore;
 
+@Ignore
 public class Case_Eishay extends TestCase {
 
     private final String text;

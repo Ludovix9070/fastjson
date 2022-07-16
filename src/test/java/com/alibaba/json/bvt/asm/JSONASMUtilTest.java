@@ -4,7 +4,9 @@ import org.junit.Assert;
 import junit.framework.TestCase;
 
 import com.alibaba.fastjson.util.ASMUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class JSONASMUtilTest extends TestCase {
 
     public void test_1() throws Exception {

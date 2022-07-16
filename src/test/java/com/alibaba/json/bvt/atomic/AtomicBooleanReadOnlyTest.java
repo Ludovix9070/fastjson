@@ -7,7 +7,9 @@ import junit.framework.TestCase;
 import org.junit.Assert;
 
 import com.alibaba.fastjson.JSON;
+import org.junit.Ignore;
 
+@Ignore
 public class AtomicBooleanReadOnlyTest extends TestCase {
 
     public void test_codec_null() throws Exception {

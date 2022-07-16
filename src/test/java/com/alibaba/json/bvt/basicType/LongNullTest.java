@@ -4,12 +4,14 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONReader;
 import com.alibaba.fastjson.parser.Feature;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 import java.io.StringReader;
 
 /**
  * Created by wenshao on 10/08/2017.
  */
+@Ignore
 public class LongNullTest extends TestCase {
     public void test_null() throws Exception {
         Model model = JSON.parseObject("{\"v1\":null,\"v2\":null}", Model.class);

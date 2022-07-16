@@ -11,7 +11,9 @@ import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class CustomDeserializerTest extends TestCase {
     public void test_0() throws Exception {
         String text = "{\"xid\":1001}";

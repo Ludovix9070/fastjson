@@ -5,6 +5,7 @@ import com.alibaba.fastjson.annotation.JSONField;
 import com.alibaba.fastjson.parser.DefaultJSONParser;
 import com.alibaba.fastjson.parser.deserializer.ObjectDeserializer;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 /**
  * Created by wenshao on 16/9/25.
  */
+@Ignore
 public class DeserializeUsingTest extends TestCase {
 
     public void test_deserializeUsing() throws Exception {

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.JSONSerializer;
 import com.alibaba.fastjson.serializer.ObjectSerializer;
 import junit.framework.TestCase;
 import org.junit.Assert;
+import org.junit.Ignore;
 
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -13,6 +14,7 @@ import java.lang.reflect.Type;
 /**
  * @author by laugh on 16/9/28 12:08.
  */
+@Ignore
 public class SerializeUsingWhenString extends TestCase {
     public void test_annotation() throws Exception {
         Model model = new Model();

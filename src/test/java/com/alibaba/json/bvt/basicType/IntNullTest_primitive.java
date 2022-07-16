@@ -2,10 +2,13 @@ package com.alibaba.json.bvt.basicType;
 
 import com.alibaba.fastjson.JSON;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 /**
  * Created by wenshao on 10/08/2017.
  */
+
+@Ignore
 public class IntNullTest_primitive extends TestCase {
     public void test_null() throws Exception {
         Model model = JSON.parseObject("{\"v1\":null,\"v2\":null}", Model.class);

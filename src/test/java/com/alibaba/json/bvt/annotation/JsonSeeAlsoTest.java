@@ -7,7 +7,9 @@ import com.alibaba.fastjson.annotation.JSONType;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class JsonSeeAlsoTest extends TestCase {
 
     public void test_seeAlso_dog() throws Exception {

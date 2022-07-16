@@ -12,7 +12,9 @@ import com.alibaba.fastjson.serializer.ObjectSerializer;
 import com.alibaba.fastjson.serializer.SerializeWriter;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class CustomSerializerTest extends TestCase {
     public void test_0() throws Exception {
         Model model = new Model();

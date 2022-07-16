@@ -83,7 +83,8 @@ public class MapTestParameterized extends TestCase {
     private boolean checkString(String inputString){
         if(inputString != null && inputString != "")
             return true;
-        return false;
+        else
+            return false;
     }
 
     @Test

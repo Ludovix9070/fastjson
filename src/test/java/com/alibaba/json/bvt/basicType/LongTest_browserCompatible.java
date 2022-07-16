@@ -12,7 +12,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
+@Ignore
 public class LongTest_browserCompatible extends TestCase {
     public void test_array() throws Exception {
         long[] values = new long[] {Long.MIN_VALUE, -1, 0, 1, Long.MAX_VALUE};

@@ -5,7 +5,9 @@ import junit.framework.TestCase;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONType;
+import org.junit.Ignore;
 
+@Ignore
 public class JSONTypejsonType_alphabetic_Test extends TestCase {
 
     public void test_alphabetic_true() throws Exception {

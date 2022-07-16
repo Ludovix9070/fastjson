@@ -4,7 +4,9 @@ import org.junit.Assert;
 import junit.framework.TestCase;
 
 import com.alibaba.fastjson.parser.ParserConfig;
+import org.junit.Ignore;
 
+@Ignore
 public class TestNonASM extends TestCase {
 
     public void test_no_asm() throws Exception {

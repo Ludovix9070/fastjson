@@ -9,8 +9,9 @@ import com.alibaba.fastjson.serializer.AwtCodec;
 import com.alibaba.fastjson.serializer.JSONSerializer;
 
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
-
+@Ignore
 public class ColorTest extends TestCase {
     public void test_color() throws Exception {
         JSONSerializer serializer = new JSONSerializer();

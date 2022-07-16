@@ -5,7 +5,9 @@ import junit.framework.TestCase;
 
 import com.alibaba.fastjson.asm.Type;
 import com.alibaba.fastjson.util.ASMUtils;
+import org.junit.Ignore;
 
+@Ignore
 public class TestType extends TestCase {
 
     public void test_getType() throws Exception {

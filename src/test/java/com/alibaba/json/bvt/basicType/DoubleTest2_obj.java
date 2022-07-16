@@ -3,10 +3,13 @@ package com.alibaba.json.bvt.basicType;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.parser.Feature;
 import junit.framework.TestCase;
+import org.junit.Ignore;
 
 /**
  * Created by wenshao on 04/08/2017.
  */
+
+@Ignore
 public class DoubleTest2_obj extends TestCase {
     public void test_obj() throws Exception {
         String json = "{\"v1\":-0.012671709,\"v2\":0.22676692048907365,\"v3\":0.13231707,\"v4\":0.80090785,\"v5\":0.6192943}";
