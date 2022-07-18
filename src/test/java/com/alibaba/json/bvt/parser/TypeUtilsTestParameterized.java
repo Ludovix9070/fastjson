@@ -46,6 +46,11 @@ public class TypeUtilsTestParameterized extends TestCase{
     private Object expected2;
 
     private Calendar calendar;
+    private BigDecimal bigDec;
+    private BigInteger bigInt;
+    private B b;
+    private A a;
+
 
     @Parameterized.Parameters
     public static Collection parameters(){
@@ -83,7 +88,20 @@ public class TypeUtilsTestParameterized extends TestCase{
                 {Type.t_cast_to_timestamp_null, "date", null,null, null, null,null},
                 {Type.t_cast_to_timestamp_null2, null, null,null, null, null,null},
                 {Type.t_cast_to_timestamp_1970_01_01_00_00_00, "Asia/Shanghai", "1970-01-01 08:00:00",0, null, null,null}, //expected in base a terzo parametro
-
+                {Type.t_cast_to_BigDecimal_same, "123", null,null, null, true,null},
+                {Type.t_cast_to_BigInteger_same, "123", null,null, null, true,null},
+                {Type.t_cast_Array, null, null,null, null, null,null},
+                {Type.t_cast_to_timestamp_util_Date, "date", new Date(System.currentTimeMillis()),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp_sql_Date, "date", new java.sql.Date(System.currentTimeMillis()),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp_sql_timestamp, System.currentTimeMillis(), null, null, null, null,null},
+                {Type.t_cast_to_timestamp_calendar, "date", System.currentTimeMillis(),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp_not_error, "date", -1, -1L, null, null,null},
+                {Type.t_cast_ab, "value", null, null, null, null,null},
+                {Type.t_cast_ab_1, "value", null, null, null, null,null},
+                {Type.t_cast_ab_error, "value", null, null, null, null,null},
+                {Type.t_error, "id", 1, null, null, null,null},
+                {Type.t_error2, "id", 1, null, null, null,null},
+                {Type.t_3, "id", "name","panlei",1,"panlei",1L}
         });
     }
 
@@ -102,6 +120,7 @@ public class TypeUtilsTestParameterized extends TestCase{
                 break;
 
             case t_2:
+            case t_3:
                 configure_t_2(p1,p2,p3,p4);
                 break;
 
@@ -121,6 +140,8 @@ public class TypeUtilsTestParameterized extends TestCase{
             case t_cast_to_String:
             case t_cast_to_timestamp:
             case t_cast_to_timestamp_null:
+            case t_error:
+            case t_error2:
                 configure_cast_1(p1,p2);
                 break;
 
@@ -130,6 +151,8 @@ public class TypeUtilsTestParameterized extends TestCase{
             case t_cast_to_SqlDate_sql_Date:
             case t_cast_to_SqlDate_error:
             case t_cast_to_SqlDate:
+            case t_cast_to_timestamp_util_Date:
+            case t_cast_to_timestamp_sql_Date:
                 configure_date_1(p1,p2);
                 break;
             case t_cast_to_SqlDate_string:
@@ -139,14 +162,17 @@ public class TypeUtilsTestParameterized extends TestCase{
 
             case t_cast_to_SqlDate_null2:
             case t_cast_to_timestamp_null2:
+            case t_cast_Array:
                 configure_date_null2(p1);
                 break;
 
             case t_cast_to_SqlDate_sql_Date2:
+            case t_cast_to_timestamp_sql_timestamp:
                 configure_sql_date2(p1);
                 break;
 
             case t_cast_to_SqlDate_calendar:
+            case t_cast_to_timestamp_calendar:
                 configure_calendar(p1,p2);
                 break;
 
@@ -156,6 +182,22 @@ public class TypeUtilsTestParameterized extends TestCase{
 
             case  t_cast_to_timestamp_1970_01_01_00_00_00:
                 configure_strange_ts(p1,p2,p3);
+
+            case t_cast_to_BigDecimal_same:
+                configure_big_decimal_same(p1);
+
+            case t_cast_to_BigInteger_same:
+                configure_big_integer_same(p1);
+
+            case t_cast_to_timestamp_not_error:
+                configure_ts_not_error(p1,p2,p3);
+
+            case t_cast_ab:
+            case t_cast_ab_1:
+                configure_cast_ab(p1);
+
+            case t_cast_ab_error:
+                configure_ab_error(p1);
 
         }
     }
@@ -233,6 +275,41 @@ public class TypeUtilsTestParameterized extends TestCase{
         this.p1 = p1;
         this.p2 = p2;
         this.p3 = p3;
+    }
+
+    private void configure_big_decimal_same(Object p1) {
+        this.p1 = p1;
+        this.bigDec = new BigDecimal((String)p1);
+
+    }
+
+    private void configure_big_integer_same(Object p1) {
+        this.p1 = p1;
+        this.bigInt = new BigInteger((String)p1);
+
+    }
+
+    private void configure_ts_not_error(Object p1, Object p2, Object p3) {
+        this.p1 = p1;
+        this.p2 = p2; //magari potrebbe essere utile avere millis parametrico
+        this.p3 = p3;
+        this.object = new JSONObject();
+        this.object.put((String)p1,p2);
+
+    }
+
+    private void configure_cast_ab(Object p1){
+        this.p1 = p1;
+        this.b = new B();
+        this.object = new JSONObject();
+        this.object.put((String)this.p1,this.b);
+    }
+
+    private void configure_ab_error(Object p1){
+        this.p1 = p1;
+        this.a = new A();
+        this.object = new JSONObject();
+        this.object.put((String)this.p1,this.a);
     }
 
 
@@ -444,6 +521,120 @@ public class TypeUtilsTestParameterized extends TestCase{
         JSON.defaultTimeZone = TimeZone.getTimeZone((String)this.p1);
         //in questo caso l'expected è soggetto a terzo parametro
         Assert.assertEquals(new Timestamp((long)this.p3), TypeUtils.castToTimestamp(this.p2));
+    }
+
+    @Test
+    public void test_cast_to_BigDecimal_same() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_BigDecimal_same);
+        Assert.assertEquals(this.expected1, this.bigDec == TypeUtils.castToBigDecimal(this.bigDec));
+    }
+
+    @Test
+    public void test_cast_to_BigInteger_same() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_BigInteger_same);
+        Assert.assertEquals(this.expected1, this.bigInt == TypeUtils.castToBigInteger(this.bigInt));
+    }
+
+    @Test
+    public void test_cast_Array() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_Array);
+        Assert.assertEquals(Integer[].class, TypeUtils.cast(new ArrayList(), Integer[].class, null).getClass());
+    }
+
+    @Test
+    public void test_cast_to_Timestamp_util_date() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_timestamp_util_Date);
+        Assert.assertEquals(this.expected1, this.object.getObject((String)this.p1, java.sql.Timestamp.class));
+    }
+
+    @Test
+    public void test_cast_to_Timestamp_sql_date() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_timestamp_sql_Date);
+        Assert.assertEquals(this.expected1, this.object.getObject((String)this.p1, java.sql.Timestamp.class));
+    }
+
+    @Test
+    public void test_cast_to_timestamp_sql_timestamp() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_timestamp_sql_timestamp);
+        java.sql.Timestamp date = new java.sql.Timestamp((long)this.p1);
+        //in questo caso millis viene usato solo come input, l'expected viene calcolato sull'input
+        Assert.assertEquals(date, TypeUtils.castToTimestamp(date));
+    }
+
+    @Test
+    public void test_cast_to_timestamp_calendar() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_timestamp_calendar);
+        Assert.assertEquals(this.expected1, this.object.getObject((String)this.p1, java.sql.Timestamp.class));
+    }
+
+    @Test
+    public void test_cast_to_timestamp_not_error() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_to_timestamp_not_error);
+        JSONException error = null;
+        try{
+            this.object.getObject((String)this.p1,java.sql.Timestamp.class);
+        }catch(JSONException e){
+            error = e;
+        }
+        Assert.assertNull(error);
+        Assert.assertEquals(new Timestamp((long)this.p3), (java.sql.Timestamp) this.object.getObject((String)this.p1, java.sql.Timestamp.class));
+    }
+
+    @Test
+    public void test_cast_ab() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_ab);
+        Assert.assertEquals(this.b, this.object.getObject((String)this.p1, A.class));
+    }
+
+    @Test
+    public void test_cast_ab1() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_ab_1);
+        Assert.assertEquals(this.b, this.object.getObject((String)this.p1, IA.class));
+    }
+
+    @Test
+    public void test_cast_ab_error() throws Exception {
+        Assume.assumeTrue(type == Type.t_cast_ab_error);
+        JSONException error = null;
+        try{
+            this.object.getObject((String)this.p1,B.class);
+        }catch(JSONException e){
+            error = e;
+        }
+        Assert.assertNotNull(error);
+    }
+
+    @Test
+    public void test_error() throws Exception {
+        Assume.assumeTrue(type == Type.t_error);
+        JSONException error = null;
+        try{
+            TypeUtils.castToJavaBean(this.object,C.class,ParserConfig.getGlobalInstance());
+        }catch(JSONException e){
+            error = e;
+        }
+        Assert.assertNotNull(error);
+    }
+
+    @Test
+    public void test_error2() throws Exception {
+        Assume.assumeTrue(type == Type.t_error2);
+        Method method = TypeUtilsTestParameterized.class.getMethod("f",List.class);
+        Throwable error2 = null;
+        try{
+            TypeUtils.cast(this.object,method.getGenericParameterTypes()[0],ParserConfig.getGlobalInstance());
+        }catch(JSONException ex){
+            error2 = ex;
+        }
+        Assert.assertNotNull(error2);
+    }
+
+    @Test
+    public void test_3() throws Exception {
+        Assume.assumeTrue(type == Type.t_3);
+        User user = JSON.toJavaObject(this.object,User.class);
+        Assert.assertEquals((long)this.expected2, user.getId());
+        Assert.assertEquals(this.expected1, user.getName());
     }
 
 
