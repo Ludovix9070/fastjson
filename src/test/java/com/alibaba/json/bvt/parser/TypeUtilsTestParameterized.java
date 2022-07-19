@@ -6,7 +6,6 @@ import java.math.BigInteger;
 import java.sql.Timestamp;
 import java.util.*;
 
-import com.alibaba.json.bvt.serializer.MapTestParameterized;
 import junit.framework.TestCase;
 
 import org.junit.Assert;
