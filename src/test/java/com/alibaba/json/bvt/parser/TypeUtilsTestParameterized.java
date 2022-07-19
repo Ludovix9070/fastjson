@@ -54,6 +54,7 @@ public class TypeUtilsTestParameterized extends TestCase{
 
     @Parameterized.Parameters
     public static Collection parameters(){
+        long millis;
         return Arrays.asList(new Object[][] {
                 {Type.t_0, null, null, null, null, null, null},
                 {Type.t_1, null, null, null, null, null, null},
@@ -72,29 +73,29 @@ public class TypeUtilsTestParameterized extends TestCase{
                 {Type.t_cast_to_Boolean, "id", 1,null, null, Boolean.TRUE,null},
                 {Type.t_cast_null, "id", null,null, null, null,null},
                 {Type.t_cast_to_String, "id", 1,null, null, "1",null},
-                {Type.t_cast_to_Date, "date", System.currentTimeMillis(),null, null, new Date(System.currentTimeMillis()),null},
-                {Type.t_cast_to_SqlDate, "date", System.currentTimeMillis(),null, null, new java.sql.Date(System.currentTimeMillis()),null},
-                {Type.t_cast_to_SqlDate_string, "date", System.currentTimeMillis(),null, null, new java.sql.Date(System.currentTimeMillis()),null},
+                {Type.t_cast_to_Date, "date", millis=System.currentTimeMillis(),null, null, new Date(millis),null},
+                {Type.t_cast_to_SqlDate, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Date(millis),null},
+                {Type.t_cast_to_SqlDate_string, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Date(millis),null},
                 {Type.t_cast_to_SqlDate_null, "date", null,null, null, null,null},
                 {Type.t_cast_to_SqlDate_null2, null, null,null, null, null,null},
-                {Type.t_cast_to_SqlDate_util_Date, "date", System.currentTimeMillis(),null, null, new java.sql.Date(System.currentTimeMillis()),null},
-                {Type.t_cast_to_SqlDate_sql_Date, "date", System.currentTimeMillis(),null, null, new java.sql.Date(System.currentTimeMillis()),null},
+                {Type.t_cast_to_SqlDate_util_Date, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Date(millis),null},
+                {Type.t_cast_to_SqlDate_sql_Date, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Date(millis),null},
                 {Type.t_cast_to_SqlDate_sql_Date2, System.currentTimeMillis(), null, null, null, null,null},
-                {Type.t_cast_to_SqlDate_calendar, "date", System.currentTimeMillis(),null, null, new java.sql.Date(System.currentTimeMillis()),null},
+                {Type.t_cast_to_SqlDate_calendar, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Date(millis),null},
                 {Type.t_cast_to_SqlDate_error, "date", 0,null, null, null,null},
-                {Type.t_cast_to_timestamp, "date", System.currentTimeMillis(),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
-                {Type.t_cast_to_timestamp_string, "date", System.currentTimeMillis(),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
-                {Type.t_cast_to_timestamp_number, "date", System.currentTimeMillis(),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Timestamp(millis),null},
+                {Type.t_cast_to_timestamp_string, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Timestamp(millis),null},
+                {Type.t_cast_to_timestamp_number, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Timestamp(millis),null},
                 {Type.t_cast_to_timestamp_null, "date", null,null, null, null,null},
                 {Type.t_cast_to_timestamp_null2, null, null,null, null, null,null},
-                {Type.t_cast_to_timestamp_1970_01_01_00_00_00, "Asia/Shanghai", "1970-01-01 08:00:00",0, null, null,null}, //expected in base a terzo parametro
+                {Type.t_cast_to_timestamp_1970_01_01_00_00_00, "Asia/Shanghai", "1970-01-01 08:00:00",0L, null, null,null}, //expected in base a terzo parametro
                 {Type.t_cast_to_BigDecimal_same, "123", null,null, null, true,null},
                 {Type.t_cast_to_BigInteger_same, "123", null,null, null, true,null},
                 {Type.t_cast_Array, null, null,null, null, null,null},
-                {Type.t_cast_to_timestamp_util_Date, "date", new Date(System.currentTimeMillis()),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
-                {Type.t_cast_to_timestamp_sql_Date, "date", new java.sql.Date(System.currentTimeMillis()),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp_util_Date, "date", new Date(millis=System.currentTimeMillis()),null, null, new java.sql.Timestamp(millis),null},
+                {Type.t_cast_to_timestamp_sql_Date, "date", new java.sql.Date(millis=System.currentTimeMillis()),null, null, new java.sql.Timestamp(millis),null},
                 {Type.t_cast_to_timestamp_sql_timestamp, System.currentTimeMillis(), null, null, null, null,null},
-                {Type.t_cast_to_timestamp_calendar, "date", System.currentTimeMillis(),null, null, new java.sql.Timestamp(System.currentTimeMillis()),null},
+                {Type.t_cast_to_timestamp_calendar, "date", millis=System.currentTimeMillis(),null, null, new java.sql.Timestamp(millis),null},
                 {Type.t_cast_to_timestamp_not_error, "date", -1, -1L, null, null,null},
                 {Type.t_cast_ab, "value", null, null, null, null,null},
                 {Type.t_cast_ab_1, "value", null, null, null, null,null},
@@ -182,22 +183,28 @@ public class TypeUtilsTestParameterized extends TestCase{
 
             case  t_cast_to_timestamp_1970_01_01_00_00_00:
                 configure_strange_ts(p1,p2,p3);
+                break;
 
             case t_cast_to_BigDecimal_same:
                 configure_big_decimal_same(p1);
+                break;
 
             case t_cast_to_BigInteger_same:
                 configure_big_integer_same(p1);
+                break;
 
             case t_cast_to_timestamp_not_error:
                 configure_ts_not_error(p1,p2,p3);
+                break;
 
             case t_cast_ab:
             case t_cast_ab_1:
                 configure_cast_ab(p1);
+                break;
 
             case t_cast_ab_error:
                 configure_ab_error(p1);
+                break;
 
         }
     }
@@ -280,6 +287,7 @@ public class TypeUtilsTestParameterized extends TestCase{
     private void configure_big_decimal_same(Object p1) {
         this.p1 = p1;
         this.bigDec = new BigDecimal((String)p1);
+        System.out.println("AAAAAAAAAAAAAAAAA"+this.bigDec+"AAAAAAAAAAAAAAAAA");
 
     }
 
@@ -413,7 +421,7 @@ public class TypeUtilsTestParameterized extends TestCase{
 
     @Test
     public void test_cast_to_String() throws Exception {
-        Assume.assumeTrue(type == Type.t_cast_to_Boolean);
+        Assume.assumeTrue(type == Type.t_cast_to_String);
         Assert.assertEquals(this.expected1, this.object.getObject((String)this.p1, String.class));
     }
 
