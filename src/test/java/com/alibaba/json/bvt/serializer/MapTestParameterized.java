@@ -54,10 +54,14 @@ public class MapTestParameterized extends TestCase {
                         obj.put(ids, id);
                     }*/
 
+                    break;
+
                 case t_null:  /*mi interessa check solo su stringa 1*/
 
                     this.obj = new JSONObject(true);
                     obj.put(value1, value2);
+
+                    break;
 
 
                 case t_Json:  /*mi interessa check solo su stringa 1 */
@@ -65,6 +69,8 @@ public class MapTestParameterized extends TestCase {
                     map.put(value1, value2);
                     this.mapnv = new MapNullValue();
                     this.mapnv.setMap(map);
+
+                    break;
 
 
             }
